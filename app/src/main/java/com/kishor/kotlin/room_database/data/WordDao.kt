@@ -1,5 +1,6 @@
 package com.kishor.kotlin.room_database.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -9,7 +10,7 @@ import androidx.room.Query
 interface WordDao {
 
     @Query("SELECT * FROM word_table ORDER BY word ASC")
-    fun getAlphaBetizedWords(): List<Word>
+    fun getAlphaBetizedWords(): LiveData<List<Word>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(word: Word)
